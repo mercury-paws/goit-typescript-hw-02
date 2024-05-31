@@ -1,8 +1,12 @@
 import css from "./SearchBar.module.css";
 import toast, { Toaster } from "react-hot-toast";
-import { ImSearch } from "react-icons/im";
 
-export default function SearchBar({ onSubmit }) {
+
+export type Props = {
+  onSubmit: (query: string) => void;
+};
+
+export default function SearchBar({ onSubmit }: Props) {
   const notify = () =>
     toast.error("please, fill in the input search field", {
       style: {
@@ -16,15 +20,15 @@ export default function SearchBar({ onSubmit }) {
       },
     });
 
-  const handleSearch = (event) => {
+  const handleSearch = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const searchQuery = event.target.elements.query.value;
-    if (searchQuery.trim() === "") {
+    const searchQuery = (event.target as HTMLFormElement).elements["query"]
+      .value;
+    if (!searchQuery.trim()) {
       return notify();
     }
     onSubmit(searchQuery);
-    // searchQuery.reset;
-    event.target.reset();
+    event.currentTarget.reset();
   };
 
   return (
@@ -43,13 +47,13 @@ export default function SearchBar({ onSubmit }) {
             name="query"
             className={css.inputField}
           />
-          <button
-            type="submit"
-            className={css.searchIconBtn}
-            onSubmit={handleSearch}
-          >
-            <ImSearch className={css.searchIcon} />
-          </button>
+          {/* <button
+              type="submit"
+              className={css.searchIconBtn}
+              onSubmit={handleSearch}
+            >
+              <ImSearch className={css.searchIcon} />
+            </button> */}
           <button type="submit" className={css.searchBtn}>
             Search
           </button>

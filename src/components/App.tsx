@@ -8,25 +8,25 @@ import { fetchImages } from "../data-api";
 import { useEffect, useState } from "react";
 
 export default function App() {
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(false);
-  const [photos, setPhotos] = useState([]);
-  const [page, setPage] = useState(1);
-  const [query, setQuery] = useState("");
-  const [modalOpen, setModalOpen] = useState(false);
-  const [selectedImageUrl, setSelectedImageUrl] = useState("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
+  const [photos, setPhotos] = useState<Array<any>>([]);
+  const [page, setPage] = useState<number>(1);
+  const [query, setQuery] = useState<string>("");
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const [selectedImageUrl, setSelectedImageUrl] = useState<string>("");
 
-  const handleSearch = async (query) => {
+  const handleSearch = async (query: string): Promise<void> => {
     setQuery(query);
-    console.log(query);
+    // console.log(query);
     setPage(1);
     setPhotos([]);
   };
 
-  const handleLoadMore = () => {
+  const handleLoadMore = (): void => {
     setPage(page + 1);
   };
-  const handleImageClick = (imageUrl) => {
+  const handleImageClick = (imageUrl: string): void => {
     setSelectedImageUrl(imageUrl);
     setModalOpen(true);
   };

@@ -6,7 +6,17 @@ import { useState } from "react";
 
 Modal.setAppElement("#root");
 
-export default function ImageModal({ isOpen, onRequestClose, imageUrl }) {
+type Props = {
+  isOpen: boolean;
+  onRequestClose: () => void;
+  imageUrl: string;
+};
+
+export default function ImageModal({
+  isOpen,
+  onRequestClose,
+  imageUrl,
+}: Props) {
   return (
     <Modal
       isOpen={isOpen}

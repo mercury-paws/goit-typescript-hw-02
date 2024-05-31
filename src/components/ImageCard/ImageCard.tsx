@@ -1,6 +1,25 @@
 import css from "./ImageCard.module.css";
 
-export default function ImageCard({ image, onImageClick }) {
+type Image = {
+  urls: {
+    small: string;
+    regular: string;
+  };
+  alt_description: string;
+  description: string;
+  user: {
+    bio: string;
+    location: string;
+    total_photos: number;
+  };
+};
+
+type Props = {
+  image: Image;
+  onImageClick: (query: string) => void;
+};
+
+export default function ImageCard({ image, onImageClick }: Props) {
   return (
     <div className={css.imageCard}>
       <div className={css.imageBlock}>
