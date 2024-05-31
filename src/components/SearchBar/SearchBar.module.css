@@ -1,0 +1,33 @@
+.searchIconBtn {
+  position: absolute;
+  left: 2px;
+  top: 3px;
+  cursor: pointer;
+  width: 10px;
+  height: 40px;
+  border: none;
+  background-color: transparent;
+}
+.searchIcon {
+  position: absolute;
+  left: 10px;
+  top: 12px;
+}
+.inputForm {
+  position: relative;
+  width: 945px;
+  text-align: center;
+  align-items: center;
+  margin: auto;
+}
+
+.searchBtn:hover {
+  border-color: #646cff;
+  background-color: rgb(233, 191, 4);
+}
+.searchBtn:focus,
+.searchBtn:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+  border-color: #646cff;
+  background-color: rgb(233, 191, 4);
+}
