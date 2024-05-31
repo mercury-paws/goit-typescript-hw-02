@@ -1,12 +1,15 @@
 import css from "./SearchBar.module.css";
 import toast, { Toaster } from "react-hot-toast";
 
+import React, { useState } from "react";
 
 export type Props = {
   onSubmit: (query: string) => void;
 };
 
 export default function SearchBar({ onSubmit }: Props) {
+  const [searchQuery, setSearchQuery] = useState("");
+
   const notify = () =>
     toast.error("please, fill in the input search field", {
       style: {
@@ -22,13 +25,11 @@ export default function SearchBar({ onSubmit }: Props) {
 
   const handleSearch = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const searchQuery = (event.target as HTMLFormElement).elements["query"]
-      .value;
     if (!searchQuery.trim()) {
       return notify();
     }
     onSubmit(searchQuery);
-    event.currentTarget.reset();
+    setSearchQuery(""); // Clear the input field
   };
 
   return (
@@ -46,14 +47,9 @@ export default function SearchBar({ onSubmit }: Props) {
             placeholder="Search images and photos"
             name="query"
             className={css.inputField}
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
           />
-          {/* <button
-              type="submit"
-              className={css.searchIconBtn}
-              onSubmit={handleSearch}
-            >
-              <ImSearch className={css.searchIcon} />
-            </button> */}
           <button type="submit" className={css.searchBtn}>
             Search
           </button>
