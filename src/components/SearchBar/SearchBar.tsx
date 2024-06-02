@@ -29,7 +29,7 @@ export default function SearchBar({ onSubmit }: Props) {
       return notify();
     }
     onSubmit(searchQuery);
-    setSearchQuery(""); // Clear the input field
+    setSearchQuery("");
   };
 
   return (
